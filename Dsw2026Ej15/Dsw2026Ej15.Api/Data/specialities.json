@@ -1,0 +1,27 @@
+[
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440001",
+    "name": "Cardiología",
+    "description": "Especialidad dedicada al diagnóstico y tratamiento de enfermedades del corazón"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440002",
+    "name": "Neurología",
+    "description": "Especialidad dedicada al diagnóstico y tratamiento de enfermedades del sistema nervioso"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440003",
+    "name": "Dermatología",
+    "description": "Especialidad dedicada al diagnóstico y tratamiento de enfermedades de la piel"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440004",
+    "name": "Oftalmología",
+    "description": "Especialidad dedicada al diagnóstico y tratamiento de enfermedades de los ojos"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440005",
+    "name": "Pediatría",
+    "description": "Especialidad dedicada a la salud y el bienestar de los niños"
+  }
+]
