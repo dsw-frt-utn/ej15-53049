@@ -1,6 +1,7 @@
 ﻿using Dsw2025Ej15.Application.Dtos;
 using Dsw2025Ej15.Application.Exceptions;
 using Dsw2025Ej15.Application.Services;
+using Dsw2025Ej15.Domain.Entities; // Agregado para reconocer Product
 using Microsoft.AspNetCore.Mvc;
 
 namespace Dsw2025Ej15.Api.Controllers;
@@ -13,13 +14,14 @@ public class ProductsController : ControllerBase
 
     public ProductsController(ProductsManagementService service)
     {
-        _service = service; 
+        _service = service;
     }
 
     [HttpGet()]
     public async Task<IActionResult> GetProducts()
     {
-        var products = await _service.GetProducts();
+        // Agregamos <Product> para que coincida con el nuevo método genérico
+        var products = await _service.GetProducts<Product>();
         if (products == null || !products.Any()) return NoContent();
         return Ok(products);
     }
@@ -33,7 +35,7 @@ public class ProductsController : ControllerBase
     }
 
     [HttpPost()]
-    public async Task<IActionResult> AddProduct([FromBody]ProductModel.Request request)
+    public async Task<IActionResult> AddProduct([FromBody] ProductModel.Request request)
     {
         try
         {
@@ -44,7 +46,7 @@ public class ProductsController : ControllerBase
         {
             return BadRequest(ae.Message);
         }
-        catch(DuplicatedEntityException de)
+        catch (DuplicatedEntityException de)
         {
             return Conflict(de.Message);
         }

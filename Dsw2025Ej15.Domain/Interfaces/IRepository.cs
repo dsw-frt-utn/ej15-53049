@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace Dsw2025Ej15.Domain;
 
-public interface IRepository
+public interface IPersistence
 {
     Task<T?> GetById<T>(Guid id) where T : EntityBase;
     Task<List<T>?> GetAll<T>() where T: EntityBase;

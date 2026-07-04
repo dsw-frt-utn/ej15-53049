@@ -2,14 +2,18 @@
 using Dsw2025Ej15.Application.Exceptions;
 using Dsw2025Ej15.Domain;
 using Dsw2025Ej15.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Dsw2025Ej15.Application.Services;
 
 public class ProductsManagementService
 {
-    private readonly IRepository _repository;
+    // Cambiamos IRepository por IPersistence
+    private readonly IPersistence _repository;
 
-    public ProductsManagementService(IRepository repository)
+    public ProductsManagementService(IPersistence repository)
     {
         _repository = repository;
     }
@@ -19,14 +23,14 @@ public class ProductsManagementService
         return await _repository.GetById<Product>(id);
     }
 
-    public async Task<List<Product>?> GetProducts()
+    public async Task<List<T>?> GetProducts<T>() where T : EntityBase
     {
-        return await _repository.GetAll<Product>();
+        return await _repository.GetAll<T>();
     }
 
     public async Task<ProductModel.Response> AddProduct(ProductModel.Request request)
     {
-        if (string.IsNullOrWhiteSpace(request.Sku) || 
+        if (string.IsNullOrWhiteSpace(request.Sku) ||
             string.IsNullOrWhiteSpace(request.Name) ||
             request.Price < 0)
         {
